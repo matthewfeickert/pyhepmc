@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13...3.17)
+cmake_minimum_required(VERSION 3.15...3.29)
 
 include(CMakePrintHelpers)
 
@@ -43,13 +43,8 @@ set(CMAKE_CXX_STANDARD
 set(CMAKE_CXX_STANDARD_REQUIRED ON) # optional, ensure standard is supported
 set(CMAKE_CXX_EXTENSIONS OFF) # optional, keep compiler extensions off
 
-# Now we can find pybind11
-option(EXTERNAL_PYBIND11 "Build against an external pybind11" OFF)
-if(EXTERNAL_PYBIND11)
-  find_package(pybind11 CONFIG REQUIRED)
-else()
-  add_subdirectory(extern/pybind11)
-endif()
+set(PYBIND11_FINDPYTHON ON)
+find_package(pybind11 CONFIG REQUIRED)
 
 cmake_print_variables(CMAKE_BUILD_TYPE)
 
